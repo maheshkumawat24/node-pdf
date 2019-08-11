@@ -82,7 +82,8 @@ app.get("/export/pdf", (req, res) => {
     const pdf = await page.pdf({
       path: "assets/test/epm.pdf",
       format: "A4",
-      printBackground: false
+      printBackground: false,
+      margin: {top : "10px" , left : "10px" , right : "10px", bottom : "10px"}
     });
     res.type("application/pdf");
     res.send(pdf);
