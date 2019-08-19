@@ -2,11 +2,11 @@ const puppeteer = require("puppeteer");
 const express = require("express");
 const app = express();
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // /* Capture a screen and save as PDF */
 // (async () => {
@@ -83,7 +83,29 @@ app.get("/export/pdf", (req, res) => {
       path: "assets/test/epm.pdf",
       format: "A4",
       printBackground: false,
-      margin: {top : "10px" , left : "10px" , right : "10px", bottom : "10px"}
+      margin: { top: "25px", left: "10px", right: "10px", bottom: "110px" },
+      displayHeaderFooter: true,
+      headerTemplate: "<div></div>",
+      footerTemplate: `<div style='width:100%;margin-right:5%;margin-left:7%;color:#333333'>
+                        <hr style="border: 0.5px solid;"/>
+                        <div style='text-align:center;font-size:12px;margin-top:6px'>Thank you for using easypick MARKETING! </div>
+                        <div style='width:100%'>
+                          <div style='width:80%;display:inline-block'>
+                            <div style='text-align:center;font-size:8px;margin-top:10px;color:#cccccc;margin-left:20%;'>url website: </div>
+                            <div style='text-align:center;font-size:10px;margin-left:20%'>easypick.marketing</div>
+                          </div>
+                          <div style='width:19%;display:inline-block;text-align:right;color:black'>
+                            <span style='font-size:16px;'>
+                              <span class='pageNumber'>
+                              </span>
+                              /
+                              <span class='totalPages'>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      `,
     });
     res.type("application/pdf");
     res.send(pdf);
