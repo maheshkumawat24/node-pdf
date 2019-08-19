@@ -85,6 +85,7 @@ app.get("/export/pdf", (req, res) => {
       printBackground: false,
       margin: { top: "25px", left: "10px", right: "10px", bottom: "110px" },
       displayHeaderFooter: true,
+      printBackground : true,
       headerTemplate: "<div></div>",
       footerTemplate: `<div style='width:100%;margin-right:5%;margin-left:7%;color:#333333'>
                         <hr style="border: 0.5px solid;"/>
